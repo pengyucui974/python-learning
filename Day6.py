@@ -18,3 +18,5 @@ def make_noise(animal:Animal):
 
 make_noise(Dog())
 make_noise(Cat())
+
+print("Git practice")
