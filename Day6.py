@@ -23,3 +23,9 @@ print("Git practice")
 
 print("hello python")
 
+class Student():
+    def information(self):
+        print("Student information")
+
+student=Student()
+student.information()
