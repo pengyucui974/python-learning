@@ -145,4 +145,4 @@ arr_1=np.random.random((2,3))
 # arr_2=(arr_1>0.5) |(arr_1<0.2)
 # print(arr_2)
 
-print(np.where(arr_1>0.5))
+# print(np.where(arr_1>0.5))
