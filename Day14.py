@@ -174,3 +174,81 @@ def middletoBackward(string):
     return "".join(outcome)
 
 # print(middletoBackward("a-b*c-d"))
+
+def doMath(string):
+    outcome=Stack()
+    for token in string:
+        if token not in ["+","-","*","/"]:
+            outcome.push(int(token))
+        else:
+            back=outcome.pop()
+            former=outcome.pop()
+            if token=="+":
+                outcome.push(back+former)
+            elif token=="-":
+                outcome.push(former-back)
+            elif token=="*":
+                outcome.push(back*former)
+            else:
+                outcome.push(former/back)
+    return "".join(str(outcome.peek()))
+
+# print(doMath("111*-1-"))
+
+#队列
+class Queue(object):
+    def __init__(self):
+        self.queue=[]
+    def enqueue(self,x):
+        self.queue.append(x)
+    def dequeue(self):
+        return self.queue.pop(0)
+    def isEmpty(self):
+        return len(self.queue)==0
+    def size(self):
+        return len(self.queue)
+
+#传土豆（队列）
+def transferPotato(list_name,num):
+    existing_people=Queue()
+    for i in list_name:
+        existing_people.enqueue(i)
+    while not existing_people.size() == 1:
+        for j in range(num):
+            existing_people.enqueue(existing_people.dequeue())
+        existing_people.dequeue()
+    return existing_people.dequeue()
+
+# name=["1","2","3","4","5","6"]
+# print(transferPotato(name,7))
+
+#双端队列
+class Deque(object):
+    def __init__(self):
+        self.deque=[]
+    def addFront(self,x):
+        self.deque.insert(0,x)
+    def addRear(self,x):
+        self.deque.append(x)
+    def removeFront(self):
+        return self.deque.pop(0)
+    def removeRear(self):
+        return self.deque.pop()
+    def isEmpty(self):
+        return len(self.deque)==0
+    def size(self):
+        return len(self.deque)
+
+#回文检测
+def palChecker(string):
+    deque=Deque()
+    Flag=True
+    for i in string:
+        deque.addRear(i)
+    while Flag and deque.size()>1:
+        if deque.removeRear()!=deque.removeFront():
+            Flag=False
+    return Flag
+
+# string="abcdcbe"
+# print(palChecker(string))
